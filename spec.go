@@ -144,6 +144,16 @@ WRAP:
 	return t
 }
 
+// Prev 上一个发生的时间点
+func (s *SpecSchedule) Prev(t time.Time) time.Time {
+	prevT := s.Next(t).AddDate(0, int(-s.Month), int(-s.Dom))
+	prevT.Add(-time.Duration(s.Hour) * time.Hour)
+	prevT.Add(-time.Duration(s.Minute) * time.Minute)
+	prevT.Add(-time.Duration(s.Second) * time.Second)
+
+	return prevT
+}
+
 // dayMatches returns true if the schedule's day-of-week and day-of-month
 // restrictions are satisfied by the given time.
 func dayMatches(s *SpecSchedule, t time.Time) bool {
