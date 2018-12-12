@@ -61,6 +61,7 @@ func (s *ScheduleEvery) Next(t time.Time) time.Time {
 	}
 }
 
+// Prev 上一个时间
 func (s *ScheduleEvery) Prev(t time.Time) time.Time {
 	switch s.Unit {
 	case UnitDay:
